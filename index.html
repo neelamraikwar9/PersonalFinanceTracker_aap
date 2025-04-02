@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container py-3">
+    <h1>Personal Finance Tracker</h1>
+    <div class="input-group py-3">
+      <input
+        type="text"
+        id="transaction"
+        placeholder="Transaction Name"
+        aria-label="First name"
+        class="form-control"
+      />
+      <input
+        type="number"
+        id="amount"
+        placeholder="Amount"
+        aria-label="Last name"
+        class="form-control"
+      />
+      <button id="addBtn" class="btn btn-primary">Add</button>
+    </div>
+
+    <ul id="transactionList" class="list-group"></ul>
+  </body>
+
+  <script>
+    const transaction = document.getElementById("transaction");
+    const amount = document.getElementById("amount");
+    const addBtn = document.getElementById("addBtn");
+    const transactionList = document.getElementById("transactionList");
+
+    addBtn.addEventListener("click", function () {
+      const nameTran = transaction.value;
+      const amountEntered = amount.value;
+
+      const listElement = document.createElement("li");
+
+      listElement.classList.add("list-group-item", "d-flex");
+
+      const transName = document.createElement("p");
+      transName.classList.add("mx-1");
+      transName.textContent = nameTran;
+      // console.log(nameTran);
+
+      const amountNo = document.createElement("p");
+      amountNo.classList.add("mx-1");
+      amountNo.textContent = `Rs.${amountEntered}.00`;
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.classList.add("btn", "btn-danger", "mx-auto", "me-0");
+
+      deleteBtn.onclick = function () {
+        listElement.remove();
+      };
+      console.log(deleteBtn);
+
+      listElement.appendChild(transName);
+      listElement.appendChild(amountNo);
+      listElement.appendChild(deleteBtn);
+
+      transactionList.appendChild(listElement);
+      transactionList.appendChild(listElement);
+      transactionList.appendChild(listElement);
+
+      // listElement.innerHTML = `<p class="list-group-item", "d-flex",  "justify-content-between">${nameTran} Rs.${amountEntered}.00 <button onClick="deleteTransaction(this)">Delete</button></p>`;
+      // transactionList.appendChild(listElement);
+
+      transaction.value = "";
+      amount.value = "";
+      // console.log(listElement);
+      // }
+    });
+
+    function deleteTransaction(deleteBtn) {
+      // console.log(deleteBtn);
+      const lists = deleteBtn.parentElement.parentElement;
+      // console.log(lists);
+      lists.remove();
+    }
+  </script>
+  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>
